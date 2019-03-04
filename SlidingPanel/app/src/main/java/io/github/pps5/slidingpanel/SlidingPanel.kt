@@ -30,6 +30,7 @@ class SlidingPanel @JvmOverloads constructor(
 
     private var panelHeight = resources.getDimensionPixelOffset(R.dimen.panel_height)
     private var bottomNavHeight = resources.getDimensionPixelOffset(R.dimen.bottom_navigation_height)
+    private var currentBottomNavHeight = bottomNavHeight
     private var maximumViewHeight: Int = 0
     private var slideRange: Int = 0
     private var slideOffset: Float = 0f
@@ -50,7 +51,7 @@ class SlidingPanel @JvmOverloads constructor(
             MeasureSpec.makeMeasureSpec(heightSize, MeasureSpec.EXACTLY)
         )
         maximumViewHeight = heightSize
-        slideRange = heightSize - panelHeight - bottomNavHeight
+        slideRange = heightSize - panelHeight - currentBottomNavHeight
     }
 
     override fun onLayout(changed: Boolean, l: Int, t: Int, r: Int, b: Int) {
@@ -65,7 +66,7 @@ class SlidingPanel @JvmOverloads constructor(
 
     private fun computePanelTop(targetSlideOffset: Float): Float {
         val slidePxOffset = targetSlideOffset * slideRange
-        return measuredHeight - panelHeight - bottomNavHeight - slidePxOffset
+        return measuredHeight - panelHeight - currentBottomNavHeight - slidePxOffset
     }
 
     private fun computeSlideOffset(top: Int) = (computePanelTop(0f) - top) / slideRange
@@ -106,11 +107,7 @@ class SlidingPanel @JvmOverloads constructor(
     }
 
     fun hideBottomNav() {
-        val newTop = if (bottomNavHeight > 0) {
-            computePanelTop(0f) + bottomNavHeight
-        } else {
-            computePanelTop(0f)
-        }
+        val newTop = computePanelTop(0f) + bottomNavHeight
         if (viewDragHelper.smoothSlideViewTo(content, left, newTop.toInt())) {
             panelState = HEIGHT_CHANGING
             postInvalidateOnAnimation()
@@ -118,7 +115,7 @@ class SlidingPanel @JvmOverloads constructor(
     }
 
     fun showBottomNav() {
-        val newTop = computePanelTop(0f)
+        val newTop = computePanelTop(0f) - bottomNavHeight
         if (viewDragHelper.smoothSlideViewTo(content, left, newTop.toInt())) {
             panelState = HEIGHT_CHANGING
             postInvalidateOnAnimation()
@@ -135,7 +132,9 @@ class SlidingPanel @JvmOverloads constructor(
                 val changedSize = top - (maximumViewHeight - panelHeight - bottomNavHeight)
                 val changeOffset = changedSize / bottomNavHeight.toFloat()
                 onCollapsedHeightChangeListener?.onChanged(changeOffset)
+                currentBottomNavHeight = bottomNavHeight - (bottomNavHeight * changeOffset).toInt()
                 if (changeOffset == 1f || changeOffset == 0f) {
+                    slideRange = maximumViewHeight - panelHeight - currentBottomNavHeight
                     panelState = COLLAPSED
                 }
             } else {
