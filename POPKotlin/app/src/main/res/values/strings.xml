@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">POPKotlin</string>
+
+    <string name="invalid_id_or_password">Invalid ID/password</string>
+</resources>
