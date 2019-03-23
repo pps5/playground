@@ -19,10 +19,6 @@ open class Page {
         return nextPage
     }
 
-    inline fun <T: Page> T.assert() {
-
-    }
-
     /**
      * AppCenterでラベル送信処理を行う（今回はstdoutに出力）
      */
