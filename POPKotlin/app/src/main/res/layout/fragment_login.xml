@@ -42,7 +42,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             app:counterEnabled="true"
-            app:layout_constraintBottom_toTopOf="@id/enter"
+            app:layout_constraintBottom_toTopOf="@id/login"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/user_id_layout">
@@ -56,7 +56,7 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.button.MaterialButton
-            android:id="@+id/enter"
+            android:id="@+id/login"
             style="@style/Widget.MaterialComponents.Button"
             android:layout_width="0dp"
             android:layout_height="64dp"
