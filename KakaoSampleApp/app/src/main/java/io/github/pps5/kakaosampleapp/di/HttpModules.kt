@@ -8,7 +8,7 @@ import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-private const val BASE_URL = "https://connpass.com/api/v1/event"
+private const val BASE_URL = "https://connpass.com/api/v1/"
 
 val httpModule = module {
 
