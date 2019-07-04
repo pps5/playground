@@ -1,6 +1,7 @@
 package io.github.pps5.kakaosampleapp
 
 import android.app.Application
+import com.jakewharton.threetenabp.AndroidThreeTen
 import io.github.pps5.kakaosampleapp.di.httpModule
 import io.github.pps5.kakaosampleapp.di.repositoryModule
 import org.koin.android.ext.koin.androidContext
@@ -10,6 +11,7 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
+        AndroidThreeTen.init(this)
         startKoin {
             androidContext(this@App)
             modules(listOf(
