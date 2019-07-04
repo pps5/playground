@@ -1,8 +1,10 @@
 package io.github.pps5.kakaosampleapp.di
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.squareup.moshi.KotlinJsonAdapterFactory
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import io.github.pps5.kakaosampleapp.data.ConnpassService
+
 import okhttp3.OkHttpClient
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -24,6 +26,7 @@ val httpModule = module {
             .addConverterFactory(MoshiConverterFactory.create(get()))
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
+            .create(ConnpassService::class.java)
     }
 
     single { OkHttpClient() }
