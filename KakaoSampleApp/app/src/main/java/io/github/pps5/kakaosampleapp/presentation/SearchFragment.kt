@@ -7,10 +7,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import io.github.pps5.kakaosampleapp.R
 import io.github.pps5.kakaosampleapp.databinding.FragmentSearchBinding
+import io.github.pps5.kakaosampleapp.presentation.viewmodel.SearchViewModel
+import org.koin.android.ext.android.inject
 
 class SearchFragment : Fragment() {
 
     private lateinit var binding: FragmentSearchBinding
+    private val viewModel: SearchViewModel by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
