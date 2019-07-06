@@ -8,7 +8,6 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import io.github.pps5.kakaosampleapp.data.entity.SearchResponse
 import io.github.pps5.kakaosampleapp.data.repository.ConnpassRepository
-import io.github.pps5.kakaosampleapp.vo.Result
 import kotlinx.coroutines.*
 import org.koin.core.KoinComponent
 import org.koin.core.inject
@@ -18,17 +17,17 @@ class SearchViewModel : ViewModel(), KoinComponent, CoroutineScope {
 
     private val job = Job()
     override val coroutineContext = Dispatchers.Main + job
-
     private val repository: ConnpassRepository by inject { parametersOf(this) }
+
     private val query = MutableLiveData<String>()
+
     val response: LiveData<SearchResponse> = Transformations.switchMap(query) {
         job.cancelChildren()
         val result = MutableLiveData<SearchResponse>()
         launch {
-            when (val res = withContext(Dispatchers.IO) { repository.search(it).receive() }) {
-                is Result.Success -> Log.d("dbg", res.value.toString())
-                is Result.Failure -> res.throwable.printStackTrace()
-            }
+            repository.search(it,
+                onSuccess = { Log.d("dbg", it.toString()) },
+                onFailure = { it.printStackTrace() })
         }
         result
     }
