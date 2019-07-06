@@ -77,4 +77,12 @@ dependencies {
 
     // Threeten ABP
     implementation 'com.jakewharton.threetenabp:threetenabp:1.2.1'
+
+    // TikXML
+    def tikxml_version = "0.8.13"
+    implementation "com.tickaroo.tikxml:annotation:$tikxml_version"
+    implementation "com.tickaroo.tikxml:core:$tikxml_version"
+    implementation "com.tickaroo.tikxml:retrofit-converter:$tikxml_version"
+    implementation "com.tickaroo.tikxml:converter-htmlescape:$tikxml_version"
+    kapt "com.tickaroo.tikxml:processor:$tikxml_version"
 }
