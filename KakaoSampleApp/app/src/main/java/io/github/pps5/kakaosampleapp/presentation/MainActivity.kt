@@ -1,14 +1,10 @@
 package io.github.pps5.kakaosampleapp.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import io.github.pps5.kakaosampleapp.R
 import io.github.pps5.kakaosampleapp.databinding.ActivityMainBinding
 
