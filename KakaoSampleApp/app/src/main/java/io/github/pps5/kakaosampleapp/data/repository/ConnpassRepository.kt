@@ -1,6 +1,6 @@
 package io.github.pps5.kakaosampleapp.data.repository
 
-import io.github.pps5.kakaosampleapp.data.ConnpassService
+import io.github.pps5.kakaosampleapp.data.datastore.ConnpassService
 import io.github.pps5.kakaosampleapp.data.entity.SearchResponse
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
