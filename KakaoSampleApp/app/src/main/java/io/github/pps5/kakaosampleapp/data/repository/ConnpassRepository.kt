@@ -2,20 +2,20 @@ package io.github.pps5.kakaosampleapp.data.repository
 
 import io.github.pps5.kakaosampleapp.data.datastore.ConnpassService
 import io.github.pps5.kakaosampleapp.data.entity.SearchResponse
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
-class ConnpassRepository(private val scope: CoroutineScope) : KoinComponent {
+class ConnpassRepository : KoinComponent {
 
     companion object {
         private const val SEARCH_DELAY_IN_MILLIS = 1_000L
     }
 
     private val connpassService: ConnpassService by inject()
+    private val appPreferences: AppPreferences by inject()
 
     suspend fun search(
         keyword: String,
