@@ -1,10 +1,9 @@
 package io.github.pps5.kakaosampleapp.data.converter
 
-import com.tickaroo.tikxml.TypeConverter
 import org.threeten.bp.ZonedDateTime
 import org.threeten.bp.format.DateTimeFormatter
 
-class ZonedDateTimeConverter : TypeConverter<ZonedDateTime> {
+class ZonedDateTimeConverter : com.tickaroo.tikxml.TypeConverter<ZonedDateTime> {
 
     companion object {
         private const val ZONED_DATE_TIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ssxxxxx"
@@ -12,7 +11,9 @@ class ZonedDateTimeConverter : TypeConverter<ZonedDateTime> {
 
     private val formatter = DateTimeFormatter.ofPattern(ZONED_DATE_TIME_FORMAT)
 
+    @androidx.room.TypeConverter
     override fun write(value: ZonedDateTime?): String = formatter.format(value)
 
+    @androidx.room.TypeConverter
     override fun read(value: String?): ZonedDateTime = ZonedDateTime.parse(value, formatter)
 }

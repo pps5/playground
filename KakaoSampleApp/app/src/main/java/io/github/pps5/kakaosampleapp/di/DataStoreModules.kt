@@ -1,16 +1,16 @@
 package io.github.pps5.kakaosampleapp.di
 
+import android.content.Context
+import androidx.room.Room
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.tickaroo.tikxml.TikXml
 import com.tickaroo.tikxml.retrofit.TikXmlConverterFactory
 import io.github.pps5.kakaosampleapp.data.converter.ZonedDateTimeConverter
-import io.github.pps5.kakaosampleapp.data.datastore.AnnotatedConverterFactory
-import io.github.pps5.kakaosampleapp.data.datastore.ConnpassService
-import io.github.pps5.kakaosampleapp.data.datastore.Json
-import io.github.pps5.kakaosampleapp.data.datastore.Xml
+import io.github.pps5.kakaosampleapp.data.datastore.*
 import okhttp3.OkHttpClient
+import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 import org.threeten.bp.ZonedDateTime
 import retrofit2.Retrofit
@@ -46,5 +46,18 @@ val dataStoreModule = module {
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
             .create(ConnpassService::class.java)
+    }
+
+    single {
+        Room.databaseBuilder(
+            androidApplication(),
+            AppDatabase::class.java,
+            "database"
+        ).build()
+    }
+
+    single {
+        androidApplication()
+            .getSharedPreferences("Preferences", Context.MODE_PRIVATE)
     }
 }
