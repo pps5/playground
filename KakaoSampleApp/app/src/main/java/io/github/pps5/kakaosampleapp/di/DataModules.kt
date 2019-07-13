@@ -8,7 +8,7 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.tickaroo.tikxml.TikXml
 import com.tickaroo.tikxml.retrofit.TikXmlConverterFactory
 import io.github.pps5.kakaosampleapp.data.converter.ZonedDateTimeConverter
-import io.github.pps5.kakaosampleapp.data.datastore.*
+import io.github.pps5.kakaosampleapp.data.store.*
 import okhttp3.OkHttpClient
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module

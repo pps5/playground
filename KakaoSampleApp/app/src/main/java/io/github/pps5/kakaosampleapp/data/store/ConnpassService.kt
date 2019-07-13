@@ -1,4 +1,4 @@
-package io.github.pps5.kakaosampleapp.data.datastore
+package io.github.pps5.kakaosampleapp.data.store
 
 import io.github.pps5.kakaosampleapp.data.entity.Feed
 import io.github.pps5.kakaosampleapp.data.entity.SearchResponse

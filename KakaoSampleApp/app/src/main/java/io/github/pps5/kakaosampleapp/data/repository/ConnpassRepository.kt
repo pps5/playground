@@ -2,8 +2,8 @@ package io.github.pps5.kakaosampleapp.data.repository
 
 import android.content.SharedPreferences
 import android.util.Log
-import io.github.pps5.kakaosampleapp.data.datastore.AppDatabase
-import io.github.pps5.kakaosampleapp.data.datastore.ConnpassService
+import io.github.pps5.kakaosampleapp.data.store.AppDatabase
+import io.github.pps5.kakaosampleapp.data.store.ConnpassService
 import io.github.pps5.kakaosampleapp.data.entity.Entry
 import io.github.pps5.kakaosampleapp.data.entity.SearchResponse
 import io.github.pps5.kakaosampleapp.data.extension.lastEntryCachedDate

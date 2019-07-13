@@ -1,4 +1,4 @@
-package io.github.pps5.kakaosampleapp.data.datastore
+package io.github.pps5.kakaosampleapp.data.store
 
 import okhttp3.ResponseBody
 import retrofit2.Converter
