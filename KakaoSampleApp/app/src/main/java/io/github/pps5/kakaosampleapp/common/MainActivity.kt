@@ -1,4 +1,4 @@
-package io.github.pps5.kakaosampleapp.presentation
+package io.github.pps5.kakaosampleapp.common
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

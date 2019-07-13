@@ -8,18 +8,18 @@
 
         <variable
             name="viewModel"
-            type="io.github.pps5.kakaosampleapp.presentation.viewmodel.NewArrivalViewModel" />
+            type="io.github.pps5.kakaosampleapp.feature.newarrivals.NewArrivalViewModel" />
 
         <import type="android.view.View" />
 
-        <import type="io.github.pps5.kakaosampleapp.Resource.Status" />
+        <import type="io.github.pps5.kakaosampleapp.common.vo.Resource.Status" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".presentation.MainActivity">
+        tools:context=".common.MainActivity">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/new_arrivals_recycler"

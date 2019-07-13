@@ -6,9 +6,11 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.tickaroo.tikxml.TikXml
 import com.tickaroo.tikxml.retrofit.TikXmlConverterFactory
 import io.github.pps5.kakaosampleapp.data.converter.ZonedDateTimeConverter
-import io.github.pps5.kakaosampleapp.data.datastore.*
+import io.github.pps5.kakaosampleapp.data.datastore.AnnotatedConverterFactory
+import io.github.pps5.kakaosampleapp.data.datastore.ConnpassService
+import io.github.pps5.kakaosampleapp.data.datastore.Json
+import io.github.pps5.kakaosampleapp.data.datastore.Xml
 import okhttp3.OkHttpClient
-import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 import org.threeten.bp.ZonedDateTime
 import retrofit2.Retrofit
@@ -17,8 +19,6 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 private const val BASE_URL = "https://connpass.com/"
 
 val dataStoreModule = module {
-
-    single { AppPreferences(androidApplication()) }
 
     single {
         Moshi.Builder()

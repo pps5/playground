@@ -1,17 +1,15 @@
-package io.github.pps5.kakaosampleapp.presentation
+package io.github.pps5.kakaosampleapp.feature.newarrivals
 
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import io.github.pps5.kakaosampleapp.R
-import io.github.pps5.kakaosampleapp.Resource
+import io.github.pps5.kakaosampleapp.common.vo.Resource
 import io.github.pps5.kakaosampleapp.databinding.FragmentHomeBinding
-import io.github.pps5.kakaosampleapp.presentation.adapter.NewArrivalsAdapter
-import io.github.pps5.kakaosampleapp.presentation.viewmodel.NewArrivalViewModel
 import org.koin.android.ext.android.inject
 
-class HomeFragment : Fragment() {
+class NewArrivalsFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: NewArrivalViewModel by inject()

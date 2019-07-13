@@ -1,4 +1,4 @@
-package io.github.pps5.kakaosampleapp.presentation.adapter
+package io.github.pps5.kakaosampleapp.feature.newarrivals
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

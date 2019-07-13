@@ -1,4 +1,4 @@
-package io.github.pps5.kakaosampleapp.presentation
+package io.github.pps5.kakaosampleapp.feature.search
 
 import android.os.Bundle
 import android.view.*
@@ -7,7 +7,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import io.github.pps5.kakaosampleapp.R
 import io.github.pps5.kakaosampleapp.databinding.FragmentSearchBinding
-import io.github.pps5.kakaosampleapp.presentation.viewmodel.SearchViewModel
 import org.koin.android.ext.android.inject
 
 class SearchFragment : Fragment() {

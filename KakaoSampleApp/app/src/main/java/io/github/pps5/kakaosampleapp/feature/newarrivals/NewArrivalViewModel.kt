@@ -1,10 +1,11 @@
-package io.github.pps5.kakaosampleapp.presentation.viewmodel
+package io.github.pps5.kakaosampleapp.feature.newarrivals
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import io.github.pps5.kakaosampleapp.Resource
+import io.github.pps5.kakaosampleapp.common.vo.Resource
 import io.github.pps5.kakaosampleapp.data.entity.Entry
 import io.github.pps5.kakaosampleapp.data.repository.ConnpassRepository
+import io.github.pps5.kakaosampleapp.common.viewmodel.CoroutineScopeViewModel
 import kotlinx.coroutines.launch
 import org.koin.core.KoinComponent
 import org.koin.core.inject

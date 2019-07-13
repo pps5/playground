@@ -1,4 +1,4 @@
-package io.github.pps5.kakaosampleapp.presentation.viewmodel
+package io.github.pps5.kakaosampleapp.common.viewmodel
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope

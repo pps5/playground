@@ -1,4 +1,4 @@
-package io.github.pps5.kakaosampleapp.presentation.viewmodel
+package io.github.pps5.kakaosampleapp.feature.search
 
 import android.os.Handler
 import android.util.Log

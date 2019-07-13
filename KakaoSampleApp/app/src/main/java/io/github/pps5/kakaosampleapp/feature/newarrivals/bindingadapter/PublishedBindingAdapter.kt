@@ -1,4 +1,4 @@
-package io.github.pps5.kakaosampleapp.presentation.bindingadapter
+package io.github.pps5.kakaosampleapp.feature.newarrivals.bindingadapter
 
 import android.widget.TextView
 import androidx.databinding.BindingAdapter

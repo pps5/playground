@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="io.github.pps5.kakaosampleapp.presentation.HomeFragment"
+        android:name="io.github.pps5.kakaosampleapp.feature.newarrivals.NewArrivalsFragment"
         android:label="HomeFragment">
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
@@ -16,6 +16,6 @@
     <fragment
         android:id="@+id/searchFragment"
         android:label=" "
-        android:name="io.github.pps5.kakaosampleapp.presentation.SearchFragment" >
+        android:name="io.github.pps5.kakaosampleapp.feature.search.SearchFragment" >
     </fragment>
 </navigation>
