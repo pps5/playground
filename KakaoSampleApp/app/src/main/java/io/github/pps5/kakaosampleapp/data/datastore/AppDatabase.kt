@@ -1,11 +1,12 @@
 package io.github.pps5.kakaosampleapp.data.datastore
 
 import androidx.room.*
+import io.github.pps5.kakaosampleapp.data.converter.LinkConverter
 import io.github.pps5.kakaosampleapp.data.converter.ZonedDateTimeConverter
 import io.github.pps5.kakaosampleapp.data.entity.Entry
 
-@Database(entities = [Entry::class], version = 1)
-@TypeConverters(ZonedDateTimeConverter::class)
+@Database(entities = [Entry::class], version = 1, exportSchema = false)
+@TypeConverters(ZonedDateTimeConverter::class, LinkConverter::class)
 abstract class AppDatabase: RoomDatabase() {
     abstract fun entryDao(): EntryDao
 }

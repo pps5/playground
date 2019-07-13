@@ -59,7 +59,10 @@ class ConnpassRepository : KoinComponent {
                 return@runCatching cachedEntries
             }
                 .onSuccess(onSuccess)
-                .onFailure(onFailure)
+                .onFailure {
+                    Log.e(TAG, it.message)
+                    onFailure(it)
+                }
         }
     }
 

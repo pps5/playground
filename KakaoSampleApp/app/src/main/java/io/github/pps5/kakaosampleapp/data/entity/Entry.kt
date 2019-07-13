@@ -2,6 +2,7 @@ package io.github.pps5.kakaosampleapp.data.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.tickaroo.tikxml.annotation.Element
 import com.tickaroo.tikxml.annotation.PropertyElement
 import com.tickaroo.tikxml.annotation.Xml
 import io.github.pps5.kakaosampleapp.data.converter.ZonedDateTimeConverter
@@ -19,6 +20,9 @@ data class Entry(
 
     @PropertyElement(name = "title")
     var title: String,
+
+    @Element(name = "link")
+    var link: Link,
 
     @PropertyElement(name = "published", converter = ZonedDateTimeConverter::class)
     var published: ZonedDateTime,
