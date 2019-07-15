@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import io.github.pps5.kakaosampleapp.common.vo.Resource
 import io.github.pps5.kakaosampleapp.data.entity.Entry
 
-@BindingAdapter(value = ["bind:newArrivals"])
+@BindingAdapter(value = ["newArrivals"])
 fun RecyclerView.setNewArrivals(newArrivals: Resource<List<Entry>>?) {
     if (this.adapter !is NewArrivalsAdapter) {
         throw IllegalStateException("${this::class.simpleName} should be set adapter of NewArrivalsAdapter")

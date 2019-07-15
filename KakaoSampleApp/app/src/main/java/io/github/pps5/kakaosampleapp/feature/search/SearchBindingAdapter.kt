@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import io.github.pps5.kakaosampleapp.common.vo.Resource
 import io.github.pps5.kakaosampleapp.data.entity.Event
 
-@BindingAdapter("bind:events")
+@BindingAdapter("events")
 fun RecyclerView.setEvents(events: Resource<List<Event>>?) {
     if (this.adapter !is SearchResultAdapter) {
         throw IllegalStateException("${this::class.simpleName} should be set adapter of SearchResultsAdapter")
@@ -17,7 +17,7 @@ fun RecyclerView.setEvents(events: Resource<List<Event>>?) {
     (this.adapter as SearchResultAdapter).setEvents(events.value)
 }
 
-@BindingAdapter("bind:errorMessage")
+@BindingAdapter("errorMessage")
 fun TextView.setErrorMessage(resourceId: Int?) {
     resourceId?.let { this.text = context.getString(it) }
 }
