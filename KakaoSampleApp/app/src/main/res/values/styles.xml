@@ -6,11 +6,6 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="searchViewStyle">@style/SearchStyle</item>
-    </style>
-
-    <style name="SearchStyle" parent="Widget.AppCompat.SearchView.ActionBar">
-        <item name="searchHintIcon">@null</item>
     </style>
 
     <style name="ListTitleStyle">
