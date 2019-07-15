@@ -1,7 +1,9 @@
 package io.github.pps5.kakaosampleapp.feature.newarrivals
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.*
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -50,11 +52,19 @@ class NewArrivalsFragment : Fragment(), NewArrivalsAdapter.OnClickItemListener {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (!query.isNullOrBlank()) {
+                    hideSoftKeyboard()
                     val action = NewArrivalsFragmentDirections.actionHomeFragmentToSearchFragment(query)
                     findNavController().navigate(action)
                     return true
                 }
                 return false
+            }
+
+            private fun hideSoftKeyboard() {
+                requireActivity().let {
+                    val imm = (it.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager)
+                    imm.hideSoftInputFromWindow(it.currentFocus!!.windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
+                }
             }
 
             override fun onQueryTextChange(newText: String?) = false
