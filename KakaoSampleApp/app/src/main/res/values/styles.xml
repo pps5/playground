@@ -14,12 +14,12 @@
     </style>
 
     <style name="TwoLineListTitleStyle">
-        <item name="android:textSize">@dimen/text_list_title</item>
+        <item name="android:textSize">@dimen/list_title_text_size</item>
         <item name="android:textColor">@color/text_list_title</item>
     </style>
 
     <style name="TwoLineListSubTitleStyle">
-        <item name="android:textSize">@dimen/text_list_subtitle</item>
+        <item name="android:textSize">@dimen/list_subtitle_text_size</item>
         <item name="android:textColor">@color/text_list_subtitle</item>
     </style>
 
