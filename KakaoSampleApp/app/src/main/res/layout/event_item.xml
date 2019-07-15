@@ -21,7 +21,7 @@
 
         <TextView
             android:id="@+id/title"
-            style="@style/TwoLineListTitleStyle"
+            style="@style/ListTitleStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -36,7 +36,7 @@
 
         <TextView
             android:id="@+id/started_at"
-            style="@style/TwoLineListSubTitleStyle"
+            style="@style/ListSubTitleStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@{event.startedAt.toString()}"
@@ -48,7 +48,7 @@
 
         <TextView
             android:id="@+id/catch_text"
-            style="@style/TwoLineListSubTitleStyle"
+            style="@style/ListSubTitleStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:ellipsize="end"
