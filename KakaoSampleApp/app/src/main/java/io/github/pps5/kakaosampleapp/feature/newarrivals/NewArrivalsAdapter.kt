@@ -3,6 +3,7 @@ package io.github.pps5.kakaosampleapp.feature.newarrivals
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import io.github.pps5.kakaosampleapp.common.util.toHtmlSpanned
 import io.github.pps5.kakaosampleapp.data.entity.Entry
 import io.github.pps5.kakaosampleapp.databinding.NewArrivalItemBinding
 
@@ -14,7 +15,7 @@ class NewArrivalsAdapter (
 
     fun setNewArrivals(list: List<Entry>) {
         newArrivals.clear()
-        newArrivals.addAll(list)
+        newArrivals.addAll(list.map { it.copy(title = it.title.toHtmlSpanned()) })
         notifyDataSetChanged()
     }
 
