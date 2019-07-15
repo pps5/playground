@@ -21,7 +21,12 @@ private const val BASE_URL = "https://connpass.com/"
 val dataStoreModule = module {
 
     single {
+        ZonedDateTimeConverter()
+    }
+
+    single {
         Moshi.Builder()
+            .add(get<ZonedDateTimeConverter>())
             .add(KotlinJsonAdapterFactory())
             .build()
     }
@@ -29,7 +34,7 @@ val dataStoreModule = module {
     factory {
         TikXml.Builder()
             .exceptionOnUnreadXml(false)
-            .addTypeConverter(ZonedDateTime::class.java, ZonedDateTimeConverter())
+            .addTypeConverter(ZonedDateTime::class.java, get<ZonedDateTimeConverter>())
             .build()
     }
 

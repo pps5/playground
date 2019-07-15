@@ -11,9 +11,11 @@ class ZonedDateTimeConverter : com.tickaroo.tikxml.TypeConverter<ZonedDateTime> 
 
     private val formatter = DateTimeFormatter.ofPattern(ZONED_DATE_TIME_FORMAT)
 
+    @com.squareup.moshi.ToJson
     @androidx.room.TypeConverter
     override fun write(value: ZonedDateTime?): String = formatter.format(value)
 
+    @com.squareup.moshi.FromJson
     @androidx.room.TypeConverter
     override fun read(value: String?): ZonedDateTime = ZonedDateTime.parse(value, formatter)
 }

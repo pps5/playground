@@ -1,6 +1,7 @@
 package io.github.pps5.kakaosampleapp.data.entity
 
 import com.squareup.moshi.Json
+import org.threeten.bp.ZonedDateTime
 
 data class SearchResponse(
     @Json(name = "results_returned") val resultsReturned: Int,
@@ -15,6 +16,6 @@ data class Event(
     @Json(name = "description") val description: String,
     @Json(name = "event_url") val eventUrl: String,
     @Json(name = "hash_tag") val hashTag: String,
-    @Json(name = "started_at") val startedAt: String,
-    @Json(name = "ended_at") val endedAt: String
+    @Json(name = "started_at") val startedAt: ZonedDateTime,
+    @Json(name = "ended_at") val endedAt: ZonedDateTime
 )
