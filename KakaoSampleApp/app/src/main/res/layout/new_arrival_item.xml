@@ -63,7 +63,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/published_title"
             app:layout_constraintTop_toTopOf="@id/published_title"
-            bind:published="@{entry.published}"
+            bind:date="@{entry.published}"
             tools:text="2019/07/11" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
