@@ -2,6 +2,7 @@ package io.github.pps5.kakaosampleapp.feature.search
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import io.github.pps5.kakaosampleapp.R
 import io.github.pps5.kakaosampleapp.common.viewmodel.CoroutineScopeViewModel
 import io.github.pps5.kakaosampleapp.common.vo.Resource
 import io.github.pps5.kakaosampleapp.data.entity.Event
@@ -19,12 +20,26 @@ class SearchViewModel(private val query: String) : CoroutineScopeViewModel(), Ko
     val events: LiveData<Resource<List<Event>>>
         get() = _events
 
+    private val _errorMessage = MutableLiveData<Int>()
+    val errorMessage: LiveData<Int>
+        get() = _errorMessage
+
     init {
         _events.postValue(Resource.loading())
         launch {
             repository.search(query,
-                onSuccess = { _events.postValue(Resource.success(it.events)) },
-                onFailure = { _events.postValue(Resource.failure()) })
+                onSuccess = {
+                    if (it.resultsReturned == 0) {
+                        _errorMessage.postValue(R.string.no_event_found)
+                        _events.postValue(Resource.failure())
+                    } else {
+                        _events.postValue(Resource.success(it.events))
+                    }
+                },
+                onFailure = {
+                    _events.postValue(Resource.failure())
+                    _errorMessage.postValue(R.string.loading_error)
+                })
         }
     }
 }

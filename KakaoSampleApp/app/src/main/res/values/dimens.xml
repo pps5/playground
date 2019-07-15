@@ -6,4 +6,6 @@
     <dimen name="two_line_text_height">64dp</dimen>
     <dimen name="text_list_title">16sp</dimen>
     <dimen name="text_list_subtitle">14sp</dimen>
+
+    <dimen name="three_line_item_height">88dp</dimen>
 </resources>
