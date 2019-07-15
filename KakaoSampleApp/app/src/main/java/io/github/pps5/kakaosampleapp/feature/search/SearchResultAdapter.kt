@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import io.github.pps5.kakaosampleapp.data.entity.Event
 import io.github.pps5.kakaosampleapp.databinding.EventItemBinding
 
-class SearchResultAdapter : RecyclerView.Adapter<SearchResultAdapter.ViewHolder>() {
+class SearchResultAdapter(
+    private val onClickEventListener: OnClickEventListener
+) : RecyclerView.Adapter<SearchResultAdapter.ViewHolder>() {
 
     private val events = mutableListOf<Event>()
 
@@ -25,8 +27,12 @@ class SearchResultAdapter : RecyclerView.Adapter<SearchResultAdapter.ViewHolder>
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.event = events[position]
+        holder.binding.listener = onClickEventListener
     }
 
     class ViewHolder(val binding: EventItemBinding): RecyclerView.ViewHolder(binding.root)
 
+    interface OnClickEventListener {
+        fun onClick(event: Event)
+    }
 }

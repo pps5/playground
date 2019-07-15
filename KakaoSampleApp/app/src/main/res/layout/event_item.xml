@@ -9,6 +9,10 @@
         <variable
             name="event"
             type="io.github.pps5.kakaosampleapp.data.entity.Event" />
+
+        <variable
+            name="listener"
+            type="io.github.pps5.kakaosampleapp.feature.search.SearchResultAdapter.OnClickEventListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -17,6 +21,7 @@
         android:background="?attr/selectableItemBackground"
         android:clickable="true"
         android:focusable="true"
+        android:onClick="@{() -> listener.onClick(event)}"
         android:paddingStart="@dimen/margin_medium"
         android:paddingEnd="@dimen/margin_medium">
 
