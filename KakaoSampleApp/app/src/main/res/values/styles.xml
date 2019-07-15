@@ -10,7 +10,6 @@
     </style>
 
     <style name="SearchStyle" parent="Widget.AppCompat.SearchView.ActionBar">
-        <item name="searchIcon">@null</item>
         <item name="searchHintIcon">@null</item>
     </style>
 

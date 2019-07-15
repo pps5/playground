@@ -18,11 +18,14 @@
 
     <fragment
         android:id="@+id/searchFragment"
-        android:label=" "
-        android:name="io.github.pps5.kakaosampleapp.feature.search.SearchFragment" >
+        android:name="io.github.pps5.kakaosampleapp.feature.search.SearchFragment"
+        android:label="{query}の検索結果">
         <action
             android:id="@+id/action_searchFragment_to_eventDetailFragment"
             app:destination="@id/eventDetailFragment" />
+        <argument
+            android:name="query"
+            app:argType="string" />
     </fragment>
 
     <fragment
