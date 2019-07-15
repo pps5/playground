@@ -4,16 +4,18 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import io.github.pps5.kakaosampleapp.R
 import io.github.pps5.kakaosampleapp.common.vo.Resource
+import io.github.pps5.kakaosampleapp.data.entity.Entry
 import io.github.pps5.kakaosampleapp.databinding.FragmentHomeBinding
 import org.koin.android.ext.android.inject
 
-class NewArrivalsFragment : Fragment() {
+class NewArrivalsFragment : Fragment(), NewArrivalsAdapter.OnClickItemListener {
 
     private lateinit var binding: FragmentHomeBinding
     private val viewModel: NewArrivalViewModel by inject()
-    private val adapter = NewArrivalsAdapter()
+    private val adapter = NewArrivalsAdapter(this)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false).also {
@@ -33,5 +35,11 @@ class NewArrivalsFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         inflater?.inflate(R.menu.menu_search, menu)
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onClick(entry: Entry) {
+        val action = NewArrivalsFragmentDirections
+            .actionHomeFragmentToEventDetailFragment(entry.title, entry.summary, entry.link.url)
+        findNavController().navigate(action)
     }
 }

@@ -17,6 +17,10 @@ interface ConnpassService {
     @GET("api/v1/event")
     fun searchAsync(@Query("keyword") keyword: String): Deferred<SearchResponse>
 
+    @Json
+    @GET("api/v1/event")
+    fun getAsync(@Query("event_id") eventId: Int): Deferred<SearchResponse>
+
     @Xml
     @GET("explore/ja.atom")
     fun getNewArrivalsAsync() : Deferred<Feed>

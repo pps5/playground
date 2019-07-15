@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import io.github.pps5.kakaosampleapp.data.entity.Entry
 import io.github.pps5.kakaosampleapp.databinding.NewArrivalItemBinding
 
-class NewArrivalsAdapter : RecyclerView.Adapter<NewArrivalsAdapter.ViewHolder>() {
+class NewArrivalsAdapter (
+    private val onClickItemListener: OnClickItemListener
+): RecyclerView.Adapter<NewArrivalsAdapter.ViewHolder>() {
 
     private val newArrivals = mutableListOf<Entry>()
 
@@ -24,8 +26,13 @@ class NewArrivalsAdapter : RecyclerView.Adapter<NewArrivalsAdapter.ViewHolder>()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.entry = newArrivals[position]
+        holder.binding.listener = onClickItemListener
     }
 
     class ViewHolder(val binding: NewArrivalItemBinding) : RecyclerView.ViewHolder(binding.root)
+
+    interface OnClickItemListener {
+        fun onClick(entry: Entry)
+    }
 }
 

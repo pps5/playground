@@ -11,11 +11,32 @@
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_eventDetailFragment"
+            app:destination="@id/eventDetailFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/searchFragment"
         android:label=" "
         android:name="io.github.pps5.kakaosampleapp.feature.search.SearchFragment" >
+        <action
+            android:id="@+id/action_searchFragment_to_eventDetailFragment"
+            app:destination="@id/eventDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/eventDetailFragment"
+        android:name="io.github.pps5.kakaosampleapp.feature.detail.EventDetailFragment"
+        android:label="{title}">
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+        <argument
+            android:name="url"
+            app:argType="string" />
     </fragment>
 </navigation>
