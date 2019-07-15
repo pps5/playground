@@ -13,6 +13,7 @@ class NewArrivalsAdapter (
     private val newArrivals = mutableListOf<Entry>()
 
     fun setNewArrivals(list: List<Entry>) {
+        newArrivals.clear()
         newArrivals.addAll(list)
         notifyDataSetChanged()
     }
