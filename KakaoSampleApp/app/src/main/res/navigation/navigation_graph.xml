@@ -2,12 +2,12 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/navigation_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/newArrivalsFragment">
 
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/newArrivalsFragment"
         android:name="io.github.pps5.kakaosampleapp.feature.newarrivals.NewArrivalsFragment"
-        android:label="HomeFragment">
+        android:label="@string/label_new_arrivals">
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/searchFragment"
         android:name="io.github.pps5.kakaosampleapp.feature.search.SearchFragment"
-        android:label="{query}の検索結果">
+        android:label="@string/label_search_results">
         <action
             android:id="@+id/action_searchFragment_to_eventDetailFragment"
             app:destination="@id/eventDetailFragment" />
