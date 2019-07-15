@@ -7,6 +7,7 @@ import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.tickaroo.tikxml.TikXml
 import com.tickaroo.tikxml.retrofit.TikXmlConverterFactory
+import io.github.pps5.kakaosampleapp.data.converter.EscapedHtmlConverter
 import io.github.pps5.kakaosampleapp.data.converter.ZonedDateTimeConverter
 import io.github.pps5.kakaosampleapp.data.store.*
 import okhttp3.OkHttpClient
@@ -34,6 +35,7 @@ val dataStoreModule = module {
     factory {
         TikXml.Builder()
             .exceptionOnUnreadXml(false)
+            .addTypeConverter(String::class.java, EscapedHtmlConverter())
             .addTypeConverter(ZonedDateTime::class.java, get<ZonedDateTimeConverter>())
             .build()
     }

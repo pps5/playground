@@ -5,6 +5,7 @@ import androidx.room.PrimaryKey
 import com.tickaroo.tikxml.annotation.Element
 import com.tickaroo.tikxml.annotation.PropertyElement
 import com.tickaroo.tikxml.annotation.Xml
+import io.github.pps5.kakaosampleapp.data.converter.EscapedHtmlConverter
 import io.github.pps5.kakaosampleapp.data.converter.ZonedDateTimeConverter
 import org.threeten.bp.ZonedDateTime
 
@@ -15,7 +16,7 @@ data class Entry(
     @PrimaryKey(autoGenerate = false)
     var id: String,
 
-    @PropertyElement(name = "summary")
+    @PropertyElement(name = "summary", converter = EscapedHtmlConverter::class)
     var summary: String,
 
     @PropertyElement(name = "title")
