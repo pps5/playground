@@ -2,20 +2,19 @@ package io.github.pps5.kakaosampleapp.data.repository
 
 import android.content.SharedPreferences
 import android.util.Log
-import io.github.pps5.kakaosampleapp.data.store.AppDatabase
-import io.github.pps5.kakaosampleapp.data.store.ConnpassService
+import io.github.pps5.kakaosampleapp.common.coroutines.HasDispatchers
 import io.github.pps5.kakaosampleapp.data.entity.Entry
 import io.github.pps5.kakaosampleapp.data.entity.SearchResponse
 import io.github.pps5.kakaosampleapp.data.extension.lastEntryCachedDate
-import kotlinx.coroutines.Dispatchers
+import io.github.pps5.kakaosampleapp.data.store.AppDatabase
+import io.github.pps5.kakaosampleapp.data.store.ConnpassService
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.withContext
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import org.threeten.bp.LocalDateTime
 
-class ConnpassRepository : KoinComponent {
+class ConnpassRepository : KoinComponent, HasDispatchers {
 
     companion object {
         private const val SEARCH_DELAY_IN_MILLIS = 1_000L
@@ -31,7 +30,7 @@ class ConnpassRepository : KoinComponent {
         onSuccess: (SearchResponse) -> Unit,
         onFailure: (Throwable) -> Unit
     ) {
-        withContext(Dispatchers.IO) {
+        withIOContext {
             runCatching {
                 delay(SEARCH_DELAY_IN_MILLIS)
                 connpassService.searchAsync(keyword).await()
@@ -46,7 +45,7 @@ class ConnpassRepository : KoinComponent {
         onFailure: (Throwable) -> Unit
     ) {
         val cacheExpiresDateTime = preferences.lastEntryCachedDate.plusHours(1)
-        withContext(Dispatchers.IO) {
+        withIOContext {
             runCatching {
                 val cachedEntries = appDatabase.entryDao().getAll()
                 if (LocalDateTime.now().isAfter(cacheExpiresDateTime) || cachedEntries.isEmpty()) {
