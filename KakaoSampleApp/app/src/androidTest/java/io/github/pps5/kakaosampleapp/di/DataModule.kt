@@ -1,0 +1,46 @@
+package io.github.pps5.kakaosampleapp.di
+
+import android.content.Context
+import androidx.room.Room
+import androidx.test.core.app.ApplicationProvider
+import io.github.pps5.kakaosampleapp.data.store.AppDatabase
+import io.github.pps5.kakaosampleapp.data.store.ConnpassService
+import io.github.pps5.kakaosampleapp.mockdata.createNewArrivalsSuccessResponse
+import io.mockk.every
+import io.mockk.mockk
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import org.koin.core.qualifier.named
+import org.koin.dsl.module
+import java.io.IOException
+
+@Suppress("DeferredIsResult")
+private fun <T> T.toDeferred() = GlobalScope.async { this@toDeferred }
+
+const val MOCK_NEW_ARRIVALS = "mock_new_arrivals"
+
+val dataStoreModule = module(override = true) {
+
+    factory(named(MOCK_NEW_ARRIVALS)) { true }
+
+    single {
+        val connpassService = mockk<ConnpassService>()
+        every { connpassService.getNewArrivalsAsync() }
+            .answers {
+                if (get(named(MOCK_NEW_ARRIVALS))) {
+                    createNewArrivalsSuccessResponse().toDeferred()
+                } else {
+                    throw IOException()
+                }
+            }
+        connpassService
+    }
+
+    single {
+        ApplicationProvider.getApplicationContext<Context>().let {
+            Room.inMemoryDatabaseBuilder(it, AppDatabase::class.java)
+                .build()
+        }
+    }
+
+}

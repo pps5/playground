@@ -21,10 +21,11 @@ class NewArrivalViewModel : CoroutineScopeViewModel(), KoinComponent {
     init {
         _newArrivals.postValue(Resource.loading())
         launch {
-            repository.getNewArrivals(
-                onSuccess = { _newArrivals.postValue(Resource.success(it)) },
-                onFailure = { _newArrivals.postValue(Resource.failure()) }
-            )
+            val entries = repository.getNewArrivals()
+            _newArrivals.value = when {
+                entries.isEmpty() -> Resource.failure()
+                else -> Resource.success(entries)
+            }
         }
     }
 }

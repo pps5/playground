@@ -40,29 +40,18 @@ class ConnpassRepository : KoinComponent, HasDispatchers {
         }
     }
 
-    suspend fun getNewArrivals(
-        onSuccess: (List<Entry>) -> Unit,
-        onFailure: (Throwable) -> Unit
-    ) {
+    suspend fun getNewArrivals(): List<Entry> = withIOContext {
         val cacheExpiresDateTime = preferences.lastEntryCachedDate.plusHours(1)
-        withIOContext {
-            runCatching {
-                val cachedEntries = appDatabase.entryDao().getAll()
-                if (LocalDateTime.now().isAfter(cacheExpiresDateTime) || cachedEntries.isEmpty()) {
-                    Log.d(TAG, "Fetch from network")
-                    val entries = connpassService.getNewArrivalsAsync().await().entry
-                    appDatabase.cacheEntries(entries)
-                    return@runCatching entries
-                }
-                Log.d(TAG, "Fetch from cache db")
-                return@runCatching cachedEntries
-            }
-                .onSuccess(onSuccess)
-                .onFailure {
-                    Log.e(TAG, it.message)
-                    onFailure(it)
-                }
+        val cachedEntries = appDatabase.entryDao().getAll()
+        if (LocalDateTime.now().isAfter(cacheExpiresDateTime) || cachedEntries.isEmpty()) {
+            Log.d(TAG, "Fetch from network")
+            runCatching { connpassService.getNewArrivalsAsync().await() }
+                .onSuccess {
+                    appDatabase.cacheEntries(it.entry)
+                    return@withIOContext it.entry }
+                .onFailure { return@withIOContext listOf<Entry>() }
         }
+        return@withIOContext cachedEntries
     }
 
     private suspend fun AppDatabase.cacheEntries(entries: List<Entry>) = coroutineScope {
