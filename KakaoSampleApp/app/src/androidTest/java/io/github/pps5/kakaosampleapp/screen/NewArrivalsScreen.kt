@@ -24,11 +24,4 @@ class NewArrivalsScreen : BaseScreen<NewArrivalsScreen>() {
         return DetailScreen()
     }
 
-    fun assertEventTitle(first: String, last: String) = apply {
-        newArrivalsList {
-            firstChild<NewArrivalItem> { title.hasText(first) }
-            lastChild<NewArrivalItem> { title.hasText(last) }
-        }
-    }
-
 }
