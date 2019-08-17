@@ -8,7 +8,6 @@ import io.github.pps5.kakaosampleapp.R
 
 abstract class BaseScreen<T : Screen<T>>: Screen<T>() {
 
-
     inline fun <reified S: BaseScreen<S>> navigateUpTo(): S {
         KView {
             isDescendantOfA { withId(R.id.toolbar) }
