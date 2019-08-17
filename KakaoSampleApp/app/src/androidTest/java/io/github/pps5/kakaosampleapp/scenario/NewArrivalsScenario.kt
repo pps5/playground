@@ -30,7 +30,7 @@ class NewArrivalsScenario : KoinTest {
     @Test
     fun showDetailFromNewArrivals() {
         loadKoinModules(module(override = true) {
-            factory(named(MOCK_NEW_ARRIVALS)) { true }
+            factory(named(IS_SUCCESS_NEW_ARRIVALS)) { true }
         })
 
         onScreen<NewArrivalsScreen> {
@@ -49,7 +49,7 @@ class NewArrivalsScenario : KoinTest {
     @Test
     fun showErrorOnFetchFailure() {
         loadKoinModules(module(override = true) {
-            factory(named(MOCK_NEW_ARRIVALS)) { false }
+            factory(named(IS_SUCCESS_NEW_ARRIVALS)) { false }
         })
         onScreen<NewArrivalsScreen> { errorMessage.isDisplayed() }
     }

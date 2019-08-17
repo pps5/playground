@@ -17,17 +17,17 @@ import java.io.IOException
 @Suppress("DeferredIsResult")
 private fun <T> T.toDeferred() = GlobalScope.async { this@toDeferred }
 
-const val MOCK_NEW_ARRIVALS = "mock_new_arrivals"
+const val IS_SUCCESS_NEW_ARRIVALS = "mock_new_arrivals"
 
 val dataStoreModule = module(override = true) {
 
-    factory(named(MOCK_NEW_ARRIVALS)) { true }
+    factory(named(IS_SUCCESS_NEW_ARRIVALS)) { true }
 
     single {
         val connpassService = mockk<ConnpassService>()
         every { connpassService.getNewArrivalsAsync() }
             .answers {
-                if (get(named(MOCK_NEW_ARRIVALS))) {
+                if (get(named(IS_SUCCESS_NEW_ARRIVALS))) {
                     createNewArrivalsSuccessResponse().toDeferred()
                 } else {
                     throw IOException()
