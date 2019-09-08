@@ -9,7 +9,6 @@ import io.github.pps5.kakaosampleapp.data.extension.lastEntryCachedDate
 import io.github.pps5.kakaosampleapp.data.store.AppDatabase
 import io.github.pps5.kakaosampleapp.data.store.ConnpassService
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.delay
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 import org.threeten.bp.LocalDateTime
@@ -25,19 +24,14 @@ class ConnpassRepository : KoinComponent, HasDispatchers {
     private val appDatabase: AppDatabase by inject()
     private val preferences: SharedPreferences by inject()
 
-    suspend fun search(
-        keyword: String,
-        onSuccess: (SearchResponse) -> Unit,
-        onFailure: (Throwable) -> Unit
-    ) {
-        withIOContext {
-            runCatching {
-                delay(SEARCH_DELAY_IN_MILLIS)
-                connpassService.searchAsync(keyword).await()
-            }
-                .onSuccess(onSuccess)
-                .onFailure(onFailure)
+    suspend fun search(keyword: String): SearchResponse? = withIOContext {
+        runCatching {
+            connpassService.searchAsync(keyword).await()
         }
+            .onSuccess { return@withIOContext it }
+            .onFailure { return@withIOContext null }
+        // dummy return
+        return@withIOContext null
     }
 
     suspend fun getNewArrivals(): List<Entry> = withIOContext {

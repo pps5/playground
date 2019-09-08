@@ -27,19 +27,18 @@ class SearchViewModel(private val query: String) : CoroutineScopeViewModel(), Ko
     init {
         _events.postValue(Resource.loading())
         launch {
-            repository.search(query,
-                onSuccess = {
-                    if (it.resultsReturned == 0) {
-                        _errorMessage.postValue(R.string.no_event_found)
-                        _events.postValue(Resource.failure())
-                    } else {
-                        _events.postValue(Resource.success(it.events))
-                    }
-                },
-                onFailure = {
-                    _events.postValue(Resource.failure())
-                    _errorMessage.postValue(R.string.loading_error)
-                })
+            val results = repository.search(query)
+            when (results?.resultsReturned) {
+                null -> {
+                    _events.value = Resource.failure()
+                    _errorMessage.value = R.string.loading_error
+                }
+                0 -> {
+                    _errorMessage.value = R.string.no_event_found
+                    _events.value = Resource.failure()
+                }
+                else -> _events.value = Resource.success(results.events)
+            }
         }
     }
 }
